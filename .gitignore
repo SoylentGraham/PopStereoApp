@@ -1,0 +1,11 @@
+# OSX
+._*
+
+# build dir
+Build/
+
+# Unity
+Temp/
+Obj/
+UnityGenerated/
+Library/
