@@ -4,6 +4,7 @@ using System.Collections;
 
 public class StereoCamera : MonoBehaviour {
 
+	public string		mNextScene;
 	public float		EyeSpacing = 0.4f;
 	private GameObject	camParent;	//	runtime parent for parent transform
 
@@ -37,6 +38,18 @@ public class StereoCamera : MonoBehaviour {
 		//	rotate camera to match gyro
 		Quaternion camRot = Input.gyro.attitude * new Quaternion(0,0,1,0);
 		transform.localRotation = camRot;
+
+
+		//	check for level change
+		if (mNextScene != "") {
+			for (var i = 0; i < Input.touchCount; ++i) {
+			if (Input.GetTouch (i).phase != TouchPhase.Began)
+					continue;
+
+				Application.LoadLevel (mNextScene);
+				break;
+			}
+		}
 	}
 
 }
